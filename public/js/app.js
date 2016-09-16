@@ -1,1 +1,6 @@
-console.log("Bird Up");
+"use strict";
+
+(function(){
+  angular
+  .module("scout",[]);
+})();
