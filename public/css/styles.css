@@ -17,9 +17,6 @@ canvas{
   background-size: 100% 100%;
 }
 
-.red{
+.active{
   color:red;
-}
-.black{
-  color:black;
 }

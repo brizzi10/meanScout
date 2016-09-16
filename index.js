@@ -21,6 +21,13 @@ app.get("/api/players/:name", function(req, res){
   })
 });
 
+app.get("/api/players/:name/shots", function(req, res){
+  Player.findOne(req.params).then(function(player){
+    res.json(player.shots);
+  })
+});
+
+
 app.delete("/api/players/:name", function(req, res){
   Player.findOneAndRemove(req.params).then(function(player){
     res.json({success: true});
@@ -38,6 +45,7 @@ app.post("/api/players", function(req, res){
     res.json(player);
   })
 });
+
 
 app.get("/*", function(req, res){
   res.sendFile(__dirname + "/public/index.html");

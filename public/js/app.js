@@ -79,13 +79,7 @@
     scoutShowCtrl.$inject = ["$stateParams", "Player", "$state", "$scope"]
     function scoutShowCtrl($stateParams, Player, $state, $scope){
       var vm = this;
-      // vm.player = Player.get($stateParams);
       vm.players = Player.query();
-
-      $scope.customStyle = {};
-      $scope.resetColor = function(event){
-
-      }
 
       $scope.setMaster = function(player){
         $scope.selected = player;
@@ -96,8 +90,11 @@
       }
 
       $scope.addOnClick = function(event) {
-        var offsetX = event.offsetX;
-        var offsetY = event.offsetY;
+        var offsetX = event.offsetX
+        var offsetY = event.offsetY
+        console.log(event.offsetX);
+        console.log(event.offsetY);
+        console.log($scope.selected);
       }
     }
 
