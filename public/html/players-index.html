@@ -1,0 +1,6 @@
+<h2>Showing {{pIndexVM.players.length}} Players:</h2>
+<ul>
+  <li data-ng-repeat="player in pIndexVM.players">
+    <a data-ui-sref="playersShow(player)">{{player.name}}</a>
+  </li>
+</ul>
