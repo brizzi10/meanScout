@@ -42,6 +42,11 @@
   function playersIndexCtrl(Player){
     var vm = this;
     vm.players = Player.query();
+    vm.create = function(){
+        Player.save(vm.newPlayer, function(response){
+          vm.players.push(response);
+        });
+    }
   }
   playersShowCtrl.$inject = ["$stateParams"];
   function playersShowCtrl($stateParams){
