@@ -3,9 +3,11 @@
 (function(){
   angular
   .module("scout",[
-    "ui.router"
+    "ui.router",
+    "ngResource"
   ])
   .config(Router)
+  .factory("Player", playerFactory)
   .controller("playersIndexController", playersIndexCtrl)
   .controller("playersShowController", playersShowCtrl);
 
@@ -30,14 +32,16 @@
     $urlRouterProvider.otherwise("/");
   }
 
-  function playersIndexCtrl(){
+  playerFactory.$inject = ["$resource"];
+  function playerFactory($resource){
+    var Player = $resource("/api/players");
+    return Player;
+  }
+
+  playersIndexCtrl.$inject = ["Player"];
+  function playersIndexCtrl(Player){
     var vm = this;
-    vm.players = [
-      {name: "Jack"},
-      {name: "Tyrique"},
-      {name: "Colden"},
-      {name: "Ayrion"}
-    ];
+    vm.players = Player.query();
   }
   playersShowCtrl.$inject = ["$stateParams"];
   function playersShowCtrl($stateParams){
