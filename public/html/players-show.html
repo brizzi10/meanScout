@@ -1,5 +1,8 @@
 <div data-ng-if="pShowVM.player.name">
 <h2>showing player {{pShowVM.player.name}}</h2>
+<input type="text" data-ng-model="pShowVM.player.name" />
+<button type="button" data-ng-click="pShowVM.update()">Update</button>
+<button type="button" data-ng-click="pShowVM.delete()">Delete</button>
 </div>
 <div data-ng-if="!pShowVM.player.name">
   <h2>This player does not exist!</h2>

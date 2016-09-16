@@ -21,6 +21,18 @@ app.get("/api/players/:name", function(req, res){
   })
 });
 
+app.delete("/api/players/:name", function(req, res){
+  Player.findOneAndRemove(req.params).then(function(player){
+    res.json({success: true});
+  });
+});
+
+app.patch("/api/players/:name", function(req, res){
+  Player.findOneAndUpdate(req.params, req.body, {new: true}).then(function(player){
+    res.json(player);
+  });
+});
+
 app.post("/api/players", function(req, res){
   Player.create(req.body).then(function(player){
     res.json(player);
