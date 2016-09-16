@@ -1,9 +1,10 @@
 <h2>Showing {{pIndexVM.players.length}} Players:</h2>
 <ul>
   <li data-ng-repeat="player in pIndexVM.players">
-    <a data-ui-sref="playersShow(player)">{{player.name}}</a>
+    <a data-ui-sref="playersShow(player)">#{{player.number}}   {{player.name}}</a>
   </li>
 </ul>
-
+<input type="text" data-ng-model="pIndexVM.newPlayer.number" />
 <input type="text" data-ng-model="pIndexVM.newPlayer.name" />
 <button type="button" data-ng-click="pIndexVM.create()">Create new Player</button>
+<a data-ui-sref="scoutShow">Scout This Team!</a>

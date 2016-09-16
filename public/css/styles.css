@@ -1,3 +1,25 @@
 body{
   font-family:"Comic Sans MS";
 }
+img{
+  display: inline-block;
+  vertical-align: top;
+}
+ul{
+  list-style-type: none;
+}
+.numberColor{
+  display: inline-block;
+}
+
+canvas{
+  background:url(http://i.imgur.com/63bGrVU.png?2);
+  background-size: 100% 100%;
+}
+
+.red{
+  color:red;
+}
+.black{
+  color:black;
+}

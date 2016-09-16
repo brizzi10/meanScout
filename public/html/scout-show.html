@@ -1,0 +1,9 @@
+<div class="numberColor" data-ng-click="resetColor($event)">
+<ul>
+  <li data-ng-class="customStyle.colorClass"  data-ng-repeat="player in sShowVM.players"
+  ng-class = "{active : isSelected(player)}">
+    <div ng-click="setMaster(player)">{{player.number}}</div>
+  </li>
+</ul>
+</div>
+<canvas data-ng-click="addOnClick($event)" width="400" height="300"></canvas>

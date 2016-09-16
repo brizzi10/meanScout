@@ -1,5 +1,56 @@
 [
-  {"name": "Jack"},
-  {"name": "Tyrique"},
-  {"name": "Colden"}
+  {"name": "Jack",
+  "number": "33",
+  "shots":[{
+    "xCoordinate": 200,
+    "yCoordinate": 300,
+    "result": true
+  },
+  {
+    "xCoordinate": 100,
+    "yCoordinate": 300,
+    "result": true
+  },
+  {
+    "xCoordinate": 400,
+    "yCoordinate": 300,
+    "result": true
+  }
+    ]},
+  {"name": "Tyrique",
+  "number": "55",
+  "shots":[{
+    "xCoordinate": 201,
+    "yCoordinate": 301,
+    "result": true
+  },
+  {
+    "xCoordinate": 101,
+    "yCoordinate": 301,
+    "result": true
+  },
+  {
+    "xCoordinate": 401,
+    "yCoordinate": 301,
+    "result": false
+  }
+    ]},
+  {"name": "Colden",
+  "number": "20",
+  "shots":[{
+    "xCoordinate": 202,
+    "yCoordinate": 302,
+    "result": false
+  },
+  {
+    "xCoordinate": 102,
+    "yCoordinate": 302,
+    "result": false
+  },
+  {
+    "xCoordinate": 402,
+    "yCoordinate": 302,
+    "result": false
+  }
+    ]}
 ]

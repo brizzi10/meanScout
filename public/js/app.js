@@ -9,7 +9,8 @@
   .config(Router)
   .factory("Player", playerFactory)
   .controller("playersIndexController", playersIndexCtrl)
-  .controller("playersShowController", playersShowCtrl);
+  .controller("playersShowController", playersShowCtrl)
+  .controller("scoutShowController", scoutShowCtrl);
 
   Router.$inject = ["$stateProvider", "$locationProvider",
   "$urlRouterProvider"];
@@ -28,9 +29,17 @@
         templateUrl: "/html/players-show.html",
         controller: "playersShowController",
         controllerAs: "pShowVM"
+      })
+      .state("scoutShow", {
+        url: "/scout",
+        templateUrl: "/html/scout-show.html",
+        controller: "scoutShowController",
+        controllerAs: "sShowVM"
       });
       $urlRouterProvider.otherwise("/");
     }
+
+
 
     playerFactory.$inject = ["$resource"];
     function playerFactory($resource){
@@ -50,6 +59,7 @@
         });
       }
     }
+
     playersShowCtrl.$inject = ["$stateParams", "Player", "$state"];
     function playersShowCtrl($stateParams, Player, $state){
       var vm = this;
@@ -65,4 +75,30 @@
         })
       }
     }
+
+    scoutShowCtrl.$inject = ["$stateParams", "Player", "$state", "$scope"]
+    function scoutShowCtrl($stateParams, Player, $state, $scope){
+      var vm = this;
+      // vm.player = Player.get($stateParams);
+      vm.players = Player.query();
+
+      $scope.customStyle = {};
+      $scope.resetColor = function(event){
+
+      }
+
+      $scope.setMaster = function(player){
+        $scope.selected = player;
+      }
+
+      $scope.isSelected = function(player){
+        return $scope.selected == player;
+      }
+
+      $scope.addOnClick = function(event) {
+        var offsetX = event.offsetX;
+        var offsetY = event.offsetY;
+      }
+    }
+
   })();
