@@ -15,6 +15,12 @@ app.get("/api/players", function(req, res){
   })
 });
 
+app.get("/api/players/:name", function(req, res){
+  Player.findOne(req.params).then(function(player){
+    res.json(player);
+  })
+});
+
 app.post("/api/players", function(req, res){
   Player.create(req.body).then(function(player){
     res.json(player);

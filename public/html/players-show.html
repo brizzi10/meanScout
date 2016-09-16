@@ -1,1 +1,6 @@
+<div data-ng-if="pShowVM.player.name">
 <h2>showing player {{pShowVM.player.name}}</h2>
+</div>
+<div data-ng-if="!pShowVM.player.name">
+  <h2>This player does not exist!</h2>
+</div>

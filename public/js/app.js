@@ -34,7 +34,7 @@
 
   playerFactory.$inject = ["$resource"];
   function playerFactory($resource){
-    var Player = $resource("/api/players");
+    var Player = $resource("/api/players/:name");
     return Player;
   }
 
@@ -48,9 +48,10 @@
         });
     }
   }
-  playersShowCtrl.$inject = ["$stateParams"];
-  function playersShowCtrl($stateParams){
+  playersShowCtrl.$inject = ["$stateParams", "Player"];
+  function playersShowCtrl($stateParams, Player){
     var vm = this;
-    vm.player = $stateParams;
+    vm.player = Player.get($stateParams, function(response){
+    })
   }
 })();
