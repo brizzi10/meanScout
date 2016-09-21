@@ -46,11 +46,33 @@ app.post("/api/players", function(req, res){
   })
 });
 
+app.post("/api/test", function(req, res){
+  Player.findOneAndUpdate({name: req.body.player.name}).then(function(player){
+    player.shots.push({ xCoordinate: req.body.coordinates.x,
+      yCoordinate: req.body.coordinates.y,
+      result: null })
+      player.save(function(err){
+        if(err)
+        {
+          console.log("error");
+        }
+        else {
+          console.log('success');
+        }
+      })
+      console.log(player);
+    })
+    console.log(req.body);
+    // console.log(res);
+  });
 
-app.get("/*", function(req, res){
-  res.sendFile(__dirname + "/public/index.html");
-});
 
-app.listen(3001, function(){
-  console.log("sup mello mike");
-});
+
+
+  app.get("/*", function(req, res){
+    res.sendFile(__dirname + "/public/index.html");
+  });
+
+  app.listen(3001, function(){
+    console.log("sup mello mike");
+  });

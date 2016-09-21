@@ -1,7 +1,7 @@
 "use strict";
 
 (function(){
-  angular
+  var app = angular
   .module("scout",[
     "ui.router",
     "ngResource"
@@ -60,10 +60,26 @@
       }
     }
 
-    playersShowCtrl.$inject = ["$stateParams", "Player", "$state"];
-    function playersShowCtrl($stateParams, Player, $state){
+    playersShowCtrl.$inject = ["$stateParams", "Player", "$state", "$scope"];
+    function playersShowCtrl($stateParams, Player, $state, $scope){
       var vm = this;
       vm.player = Player.get($stateParams);
+
+      // var idImage = "playerChart";
+      // var canvas = document.getElementById($scope.idImage);
+      // var ctx = canvas.getContext('2d');
+      // var canvasFont = "30px Arial";
+      // var make = "o";
+      // var miss = "x";
+      // var xCo = 20;
+      // var yCo = 35;
+      //
+      //
+      // $scope.draw = function(){
+      //   ctx.font = $scope.canvasFont;
+      //   ctx.filltext($scope.make, $scope.xCo, $scope.yCo);
+      // }
+
       vm.delete = function(){
         Player.remove($stateParams, function(){
           $state.go("playersIndex");
@@ -76,8 +92,8 @@
       }
     }
 
-    scoutShowCtrl.$inject = ["$stateParams", "Player", "$state", "$scope"]
-    function scoutShowCtrl($stateParams, Player, $state, $scope){
+    scoutShowCtrl.$inject = ["$stateParams", "Player", "$state", "$scope","$http"]
+    function scoutShowCtrl($stateParams, Player, $state, $scope, $http){
       var vm = this;
       vm.players = Player.query();
 
@@ -90,12 +106,32 @@
       }
 
       $scope.addOnClick = function(event) {
-        var offsetX = event.offsetX
-        var offsetY = event.offsetY
+        var offsetX = event.offsetX;
+        var offsetY = event.offsetY;
         console.log(event.offsetX);
         console.log(event.offsetY);
         console.log($scope.selected);
+        $http.post("/api/test", {player: $scope.selected, coordinates: {x: offsetX, y:offsetY}});
       }
     }
+    app.directive('drawCircle', function() {
+      return {
+        scope: {
+          x: '@x',
+          y: '@y'
+        },
+        link: function(scope, element, attrs) {
+          var x = parseInt(scope.x);
+          var y = parseInt(scope.y);
+          var canvas = element.parent();
+          var ctx = canvas[0].getContext("2d");
+          ctx.beginPath();
+          ctx.arc(x, y, 5, 0, 2 * Math.PI, false);
+          ctx.lineWidth = 0.2;
+          ctx.stroke();
+          ctx.fill();
+        }
+      }
+    });
 
   })();

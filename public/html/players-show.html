@@ -3,3 +3,10 @@
 <input type="text" data-ng-model="pShowVM.player.name" />
 <button type="button" data-ng-click="pShowVM.update()">Update</button>
 <button type="button" data-ng-click="pShowVM.delete()">Delete</button>
+<canvas width="400" height="300">
+  <draw-circle x="50" y="70"></draw-circle>
+  <draw-circle x="50" y="40"></draw-circle>
+</canvas>
+<ul>
+  <li data-ng-repeat="shot in pShowVM.player.shots">{{shot.xCoordinate}} {{shot.yCoordinate}} {{shot.result}}</li>
+</ul>

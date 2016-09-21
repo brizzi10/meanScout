@@ -8,3 +8,8 @@
 <input type="text" data-ng-model="pIndexVM.newPlayer.name" />
 <button type="button" data-ng-click="pIndexVM.create()">Create new Player</button>
 <a data-ui-sref="scoutShow">Scout This Team!</a>
+<div ng-repeat="player in IndexVM.players">
+  <script>
+  console.log("hello" + player);
+  </script>
+</div>

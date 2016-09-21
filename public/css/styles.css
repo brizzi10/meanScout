@@ -15,6 +15,14 @@ ul{
 canvas{
   background:url(http://i.imgur.com/63bGrVU.png?2);
   background-size: 100% 100%;
+  display:block;
+}
+#scoutCanvas{
+  display: inline;
+}
+
+.playerChart{
+  display: block;
 }
 
 .active{
