@@ -103,6 +103,7 @@
 
       $scope.isSelected = function(player){
         return $scope.selected == player;
+        console.log(isSelected);
       }
 
       $scope.addOnClick = function(event) {
@@ -112,6 +113,7 @@
         console.log(event.offsetY);
         console.log($scope.selected);
         $http.post("/api/test", {player: $scope.selected, coordinates: {x: offsetX, y:offsetY}});
+
       }
     }
     app.directive('drawCircle', function() {
