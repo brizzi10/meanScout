@@ -8,6 +8,8 @@ var Player = mongoose.model("Player");
 app.use(parser.json({urlencoded: true}));
 app.use("/", express.static("public"));
 app.use("/", express.static("bower_components"));
+app.use("/", express.static("node_modules"));
+
 
 app.get("/api/players", function(req, res){
   Player.find().then(function(players){

@@ -6,4 +6,8 @@
   </li>
 </ul>
 </div>
-<canvas id="scoutCanvas" data-ng-click="addOnClick($event)" width="400" height="300"></canvas>
+<canvas id="scoutCanvas" data-ng-click="addOnClick($event)" width="400" height="200"></canvas>
+<div class="buttons"  data-ng-show="shot" data-ng-click="hide($event)">
+<button type="button" data-ng-model="pShowVM.player.shots.result" data-ng-click="pShowVM.make()">Make</button>
+<button type="button" data-ng-click="pShowVm.miss()">Miss</button>
+</div>

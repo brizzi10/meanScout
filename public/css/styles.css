@@ -16,6 +16,9 @@ canvas{
   background:url(http://i.imgur.com/63bGrVU.png?2);
   background-size: 100% 100%;
   display:block;
+  width: 100% !important;
+  max-width: 400px;
+  height: auto !important;
 }
 #scoutCanvas{
   display: inline;
@@ -27,4 +30,8 @@ canvas{
 
 .active{
   color:red;
+}
+.container{
+  height:300;
+  width: 400;
 }

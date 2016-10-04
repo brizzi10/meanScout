@@ -4,7 +4,8 @@
   var app = angular
   .module("scout",[
     "ui.router",
-    "ngResource"
+    "ngResource",
+    "chart.js"
   ])
   .config(Router)
   .factory("Player", playerFactory)
@@ -65,20 +66,54 @@
       var vm = this;
       vm.player = Player.get($stateParams);
 
-      // var idImage = "playerChart";
-      // var canvas = document.getElementById($scope.idImage);
-      // var ctx = canvas.getContext('2d');
-      // var canvasFont = "30px Arial";
-      // var make = "o";
-      // var miss = "x";
-      // var xCo = 20;
-      // var yCo = 35;
-      //
-      //
-      // $scope.draw = function(){
-      //   ctx.font = $scope.canvasFont;
-      //   ctx.filltext($scope.make, $scope.xCo, $scope.yCo);
-      // }
+      $scope.height_chart = window.innerHeight*0.7;
+
+      $scope.series = ['Make', 'Miss'];
+
+      $scope.colors = ['#459c1d', '#bf3535'];
+
+      $scope.options = {
+        legend: {
+            display: true,
+            labels: {
+            boxWidth: 10            }
+          },
+        scales: {
+          xAxes: [{
+            display: false,
+            ticks: {
+              max: 400,
+              min: 0
+            }
+          }],
+          yAxes: [{
+            display: false,
+            ticks: {
+            max: 300,
+            min: 0
+          }
+          }]
+        }
+      };
+
+      $scope.data = [
+        [{
+          x: 6,
+          y: 300-287,
+          r: 5
+        },
+        {
+          x: 72,
+          y: 300-139,
+          r: 5
+        }],
+        [{
+          x: 200,
+          y: 300-97,
+          r: 5
+        }]
+      ];
+
 
       vm.delete = function(){
         Player.remove($stateParams, function(){
@@ -103,7 +138,6 @@
 
       $scope.isSelected = function(player){
         return $scope.selected == player;
-        console.log(isSelected);
       }
 
       $scope.addOnClick = function(event) {
@@ -113,27 +147,35 @@
         console.log(event.offsetY);
         console.log($scope.selected);
         $http.post("/api/test", {player: $scope.selected, coordinates: {x: offsetX, y:offsetY}});
-
+        $scope.shot = true;
+      }
+      $scope.hide = function(event){
+        $scope.shot = false;
+      }
+      vm.make = function(){
+        console.log("shots fired");
       }
     }
-    app.directive('drawCircle', function() {
-      return {
-        scope: {
-          x: '@x',
-          y: '@y'
-        },
-        link: function(scope, element, attrs) {
-          var x = parseInt(scope.x);
-          var y = parseInt(scope.y);
-          var canvas = element.parent();
-          var ctx = canvas[0].getContext("2d");
-          ctx.beginPath();
-          ctx.arc(x, y, 5, 0, 2 * Math.PI, false);
-          ctx.lineWidth = 0.2;
-          ctx.stroke();
-          ctx.fill();
-        }
-      }
-    });
+
+    // app.directive('drawCircle', function() {
+    //   return {
+    //     scope: {
+    //       x: '@x',
+    //       y: '@y'
+    //     },
+    //     link: function(scope, element, attrs) {
+    //       var x = parseInt(scope.x);
+    //       var y = parseInt(scope.y);
+    //       var canvas = element.parent();
+    //       var ctx = canvas[0].getContext("2d");
+    //       ctx.beginPath();
+    //       ctx.arc(x, y, 5, 0, 2 * Math.PI, false);
+    //       ctx.lineWidth = 0.2;
+    //       ctx.stroke();
+    //       ctx.fill();
+    //     }
+    //   }
+    // });
+
 
   })();
